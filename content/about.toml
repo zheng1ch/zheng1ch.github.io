@@ -3,9 +3,7 @@ title = "About"
 
 [profile]
 research_interests = [
-  "Computational Physics",
-  "Mathematical Principles",
-  "Proof of Theorems"
+  "Behavioral & System Neuroscience"
 ]
 
 [[sections]]
@@ -21,9 +19,9 @@ title = "Selected Publications"
 filter = "selected"
 limit = 5
 
-[[sections]]
-id = "news"
-type = "list"
-title = "News"
-source = "news.toml"
+# [[sections]]
+# id = "news"
+# type = "list"
+# title = "News"
+# source = "news.toml"
 

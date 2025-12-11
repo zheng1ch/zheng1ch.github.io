@@ -42,7 +42,7 @@ export default function Profile({ author, social, features, researchInterests }:
     const [showEmail, setShowEmail] = useState(false);
     const [isEmailPinned, setIsEmailPinned] = useState(false);
     const [lastClickedTooltip, setLastClickedTooltip] = useState<'email' | 'address' | null>(null);
-
+    
     // Check local storage for user's like status
     useEffect(() => {
         if (!features.enable_likes) return;
@@ -126,10 +126,13 @@ export default function Profile({ author, social, features, researchInterests }:
                 <h1 className="text-3xl font-serif font-bold text-primary mb-2">
                     {author.name}
                 </h1>
-                <p className="text-lg text-accent font-medium mb-1">
+                <h1 className="text-xl font-serif font-bold text-primary mb-2">
+                    {author.chinese_name}
+                </h1>
+                <p className="text-medium font-medium mb-1">
                     {author.title}
                 </p>
-                <p className="text-neutral-600 mb-2">
+                <p className="text-medium font-medium mb-1">
                     {author.institution}
                 </p>
             </div>
@@ -312,6 +315,7 @@ export default function Profile({ author, social, features, researchInterests }:
                     </div>
                 </div>
             )}
+
 
             {/* Like Button */}
             {features.enable_likes && (

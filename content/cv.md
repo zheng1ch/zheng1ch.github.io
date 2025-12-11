@@ -1,26 +1,30 @@
 ## Education
 
-**The University of Example**, PhD in Natural Science, *2025 - Present*
-- Research focus: Mathematical Principles of Natural Philosophy
-- Supervisor: Prof. Advisor One and Dr. Advisor Two
+**PhD candidate in Neuroscience**, Florida State University, *2020 - Present*
+- Advisor: Aaron Wilber, PhD
 
-**The University of Example**, BSc in Natural Science, *2021 - 2025*
-- Graduated with First Class Honours
+**BS in Life Science**, ShanghaiTech University, *2014 - 2018*
 
-## Experience
+## RESEARCH EXPERIENCE
 
-**Example Role**
-Company/Institution
-*2023 - 2024*
-- Description of key responsibilities and achievements.
-- Utilized skills to solve problems.
+**Research Assistant**,
+Program of Neuroscience, Florida State University, *2022 - Present*
+- PI: Aaron Wilber, PhD
+
+**R&D Trainee**,
+Liver Disease Department, China Novartis Institute for Biomedical Research, *2018 - 2020*
+- Supervisors: Yue Xiao, PhD & James Ooi, PhD
+
+**Undergraduate Research Assistant**,
+Behavior and System Neurobiology Lab, ShanghaiTech University, *2016 - 2018*
+- Supervisors: Ji Hu, PhD & Wenzhi Sun, PhD
 
 ## Skills
 
-- **Programming:** Python, C++, MATLAB, LaTeX
-- **Data Analysis:** Pandas, NumPy, SciPy
-- **Languages:** English (Native), French (Fluent)
+**Neurobiological:** Electrophysiological recording (tetrodes & silicon probes), animal behavior, histology
 
-## Awards & Honors
+**Programming:** Python, MATLAB
 
-- **First Prize in Example Competition** - Committee of Example (*2024*)
+**Languages:** Mandarin (Native), English (Fluent), Spanish (Two-semester-learning-in-college-but-never-used), Cantonese (Only-when-singing), Ukrainian (Duolinguo-2-day-streak) 
+
+

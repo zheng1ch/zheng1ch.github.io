@@ -103,7 +103,7 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
                 >
                   <Link
                     href="/"
-                    className="text-xl lg:text-2xl font-serif font-semibold text-primary hover:text-accent transition-colors duration-200"
+                    className="text-xl lg:text-2xl font-semibold text-primary hover:text-accent transition-colors duration-200 font-logo"
                   >
                     {siteTitle}
                   </Link>

@@ -239,3 +239,27 @@ body {
   /* Soften card borders in dark mode only */
   border-color: rgba(148, 163, 184, 0.24);
 }
+
+:root {
+  --font-body: var(--font-inter);
+  --font-heading: var(--font-nunito);
+}
+
+/* Body text */
+body {
+  font-family: var(--font-body), sans-serif;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+/* Navigation top-left logo */
+.font-logo {
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}

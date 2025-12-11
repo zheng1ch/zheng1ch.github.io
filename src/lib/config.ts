@@ -10,7 +10,9 @@ export interface SiteConfig {
         last_updated?: string;
     };
     author: {
+        // [x: string]: ReactNode;
         name: string;
+        chinese_name: string;
         title: string;
         institution: string;
         avatar: string;

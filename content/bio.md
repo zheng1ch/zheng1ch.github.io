@@ -1,5 +1,7 @@
-I am a PhD student at the School of Science, University of Example, advised by [Prof. Advisor One](https://example.com) and [Dr. Advisor Two](https://example.com).
+I am currently a Ph.D. candidate in the Program in Neuroscience at Florida State University, advised by [Dr. Aaron Wilber](https://scholar.google.com/citations?user=eLUxMiYAAAAJ&hl=en). 
 
-Prior to this, I obtained a BSc degree with First Class Honours in Natural Science from the University of Example.
+My research focuses on the neural mechanisms that support spatial navigation between the hippocampus and the cortical area, using large-scale electrophysiology in rodents. I am also interested in translational applications, including potential interventions for spatial awareness deficits in Alzheimer’s disease.
 
-My current research focuses on investigating the mathematical principles of natural philosophy.
+Before beginning my doctoral training, I earned a B.S. in Life Science from ShanghaiTech University, where I conducted research under the supervision of [Dr. Ji Hu](https://scholar.google.com/citations?hl=en&user=idw5qaoAAAAJ&view_op=list_works) and [Dr. Wenzhi Sun](https://scholar.google.com/citations?user=DvhC0qQAAAAJ&hl=en). My undergraduate work examined the role of the ventral tegmental area (VTA) in avoidance learning.
+
+
