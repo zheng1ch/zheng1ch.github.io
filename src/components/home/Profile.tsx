@@ -13,7 +13,6 @@ import { MapPinIcon as MapPinSolidIcon, EnvelopeIcon as EnvelopeSolidIcon } from
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import { Github, Linkedin, Pin } from 'lucide-react';
 import { SiteConfig } from '@/lib/config';
-import MapVisitors from '@/components/MapVisitors';
 
 // Custom ORCID icon component
 const OrcidIcon = ({ className }: { className?: string }) => (
