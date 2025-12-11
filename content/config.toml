@@ -80,6 +80,5 @@ title = "Visitors Map"
 type = "page"
 target = "MapVisitors"
 href = "/MapVisitors"
-hidden = true
 
 
