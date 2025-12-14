@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { CardPageConfig } from '@/types/page';
+import Link from 'next/link';
 
 export default function CardPage({ config, embedded = false }: { config: CardPageConfig; embedded?: boolean }) {
     return (
@@ -28,8 +29,19 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                         transition={{ duration: 0.4, delay: 0.1 * index }}
                         className={`bg-white dark:bg-neutral-900 ${embedded ? "p-4" : "p-6"} rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-lg transition-all duration-200 hover:scale-[1.01]`}
                     >
+                                                {/* ✅ Preview image (optional) */}
+                        
+
                         <div className="flex justify-between items-start mb-2">
-                            <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary`}>{item.title}</h3>
+                            <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary`}>
+                                {item.link ? (
+                                    <Link href={item.link} className="hover:underline">
+                                        {item.title}
+                                    </Link>
+                                ) : (
+                                    item.title
+                                )}
+                            </h3>
                             {item.date && (
                                 <span className="text-sm text-neutral-500 font-medium bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded">
                                     {item.date}
@@ -44,6 +56,18 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                                 {item.content}
                             </p>
                         )}
+
+                        {(item as any).image && (
+                            <div className={`${embedded ? "mb-3" : "mb-4"} overflow-hidden rounded-xl border border-neutral-200/60 dark:border-neutral-800/60`}>
+                                <img
+                                    src={(item as any).image}
+                                    alt={item.title}
+                                    className={`${embedded ? "h-32" : "h-40"} w-full object-cover`}
+                                    loading="lazy"
+                                />
+                            </div>
+                        )}
+
                         {item.tags && (
                             <div className="flex flex-wrap gap-2 mt-4">
                                 {item.tags.map(tag => (
@@ -53,6 +77,14 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                                 ))}
                             </div>
                         )}
+                        {item.link && (
+                            <div className="mt-4">
+                                <Link href={item.link} className="text-sm text-accent hover:underline">
+                                    {/* {item.link_text ?? 'Read more →'} */}
+                                </Link>
+                            </div>
+                        )}
+                        
                     </motion.div>
                 ))}
             </div>

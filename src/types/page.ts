@@ -15,6 +15,7 @@ export interface TextPageConfig extends BasePageConfig {
 }
 
 export interface CardItem {
+    link_text: string;
     title: string;
     subtitle?: string;
     date?: string;

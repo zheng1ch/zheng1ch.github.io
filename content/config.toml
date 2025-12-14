@@ -70,15 +70,29 @@ target = "cv"
 href = "/cv"
 
 [[navigation]]
+title = "Playground"
+type = "page"
+target = "playground"
+href = "/playground"
+
+[[navigation]]
 title = "Travel"
 type = "page"
 target = "flights"
 href = "/flights"
+hidden = true
 
 [[navigation]]
 title = "Visitors Map"
 type = "page"
 target = "MapVisitors"
 href = "/MapVisitors"
+hidden = true
 
+[[navigation]]
+title = "Mood tracking 2025"
+type = "page"
+target = "mood_tracking_2025"
+href = "/mood_tracking_2025"
+hidden = true
 

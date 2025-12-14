@@ -70,3 +70,5 @@ function TextPageWrapper({ config }: { config: TextPageConfig }) {
     const content = getMarkdownContent(config.source);
     return <TextPage config={config} content={content} />;
 }
+
+

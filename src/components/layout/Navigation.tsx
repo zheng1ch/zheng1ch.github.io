@@ -113,7 +113,7 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
                 <div className="hidden lg:block">
                   <div className="ml-10 flex items-center space-x-8">
                     <div className="flex items-baseline space-x-8">
-                      {items.map((item) => {
+                      {items.filter(item => !item.hidden).map((item) => {
                         const isActive = enableOnePageMode
                           ? activeHash === `#${item.target}` || (!activeHash && item.target === 'about')
                           : (item.href === '/'
