@@ -5,7 +5,7 @@
 
 **BS in Life Science**, ShanghaiTech University, *2014 - 2018*
 
-## RESEARCH EXPERIENCE
+## Research experience
 
 **Research Assistant**,
 Program of Neuroscience, Florida State University, *2022 - Present*
