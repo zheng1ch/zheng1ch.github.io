@@ -10,6 +10,8 @@ import { useEffect, useMemo, useState } from 'react';
 import type { Pluggable } from 'unified';
 import { visit } from 'unist-util-visit';
 import type { Root } from 'mdast';
+import type { Heading, PhrasingContent, Text, InlineCode } from 'mdast';
+import type { ComponentPropsWithoutRef } from 'react';
 
 interface TextPageProps {
   config: TextPageConfig;
@@ -18,6 +20,8 @@ interface TextPageProps {
 }
 
 type TocNode = { id: string; text: string; children: { id: string; text: string }[] };
+
+type AnchorProps = ComponentPropsWithoutRef<'a'>;
 
 /**
  * Stable slug plugin for headings (## / ###)
@@ -28,14 +32,16 @@ const remarkSlugStable: Pluggable = () => {
     const slugger = new GithubSlugger();
     slugger.reset();
 
-    visit(tree, 'heading', (node: any) => {
-      const depth = node.depth as number;
+    visit(tree, 'heading', (node) => {
+      const heading = node as Heading;
+      const depth = heading.depth;
       if (depth < 2 || depth > 3) return;
 
       // Extract plain text from heading children
-      const text = (node.children || [])
-        .map((c: any) => {
-          if (c.type === 'text' || c.type === 'inlineCode') return c.value ?? '';
+      const text = (heading.children || [])
+        .map((c: PhrasingContent) => {
+          if (c.type === 'text') return (c as Text).value ?? '';
+          if (c.type === 'inlineCode') return (c as InlineCode).value ?? '';
           return '';
         })
         .join(' ')
@@ -46,9 +52,9 @@ const remarkSlugStable: Pluggable = () => {
 
       const id = slugger.slug(text);
 
-      node.data = node.data || {};
-      node.data.hProperties = node.data.hProperties || {};
-      node.data.hProperties.id = id;
+      heading.data = heading.data || {};
+      heading.data.hProperties = heading.data.hProperties || {};
+      (heading.data.hProperties as Record<string, unknown>).id = id;
     });
   };
 };
@@ -257,37 +263,34 @@ export default function TextPage({ config, content, embedded = false }: TextPage
                 ul: ({ children }) => <ul className="list-disc list-inside mb-4 space-y-1 ml-4">{children}</ul>,
                 ol: ({ children }) => <ol className="list-decimal list-inside mb-4 space-y-1 ml-4">{children}</ol>,
                 li: ({ children }) => <li className="mb-1">{children}</li>,
-                a: ({ href, children, ...props }) => {
-                    const isThisPage =
-                        typeof config.source === 'string' &&
-                        config.source.includes('mood_tracking_2025'); // ← change to your md filename
+                a: ({ href, children, ...props }: AnchorProps) => {
+                  const isThisPage =
+                    typeof config.source === 'string' &&
+                    config.source.includes('mood_tracking_2025'); // ← change to your md filename
 
-                    const isHash = href?.startsWith('#') ?? false;
-                    const isImageLink = !!href && /\.(png|jpg|jpeg|webp|gif|svg)$/i.test(href);
+                  const isHash = href?.startsWith('#') ?? false;
 
-                    // Default: open in new tab (your original behavior)
-                    let target: string | undefined = '_blank';
-                    let rel: string | undefined = 'noopener noreferrer';
+                  // Default: open in new tab
+                  let target: string | undefined = '_blank';
+                  let rel: string | undefined = 'noopener noreferrer';
 
-                    // ONLY on this page:
-                    // - hash links stay in same tab
-                    // - image links open in new tab (desired behavior)
-                    if (isThisPage && isHash) {
-                        target = undefined;
-                        rel = undefined;
-                    }
+                  // ONLY on this page: hash links stay in same tab
+                  if (isThisPage && isHash) {
+                    target = undefined;
+                    rel = undefined;
+                  }
 
-                    return (
-                        <a
-                        href={href}
-                        {...props}
-                        target={target}
-                        rel={rel}
-                        className="text-accent font-medium hover:underline transition-colors"
-                        >
-                        {children}
-                        </a>
-                    );
+                  return (
+                    <a
+                      href={href}
+                      {...props}
+                      target={target}
+                      rel={rel}
+                      className="text-accent font-medium hover:underline transition-colors"
+                    >
+                      {children}
+                    </a>
+                  );
                 },
                 blockquote: ({ children }) => (
                   <blockquote className="border-l-4 border-accent/50 pl-4 italic my-4 text-neutral-600 dark:text-neutral-500">
