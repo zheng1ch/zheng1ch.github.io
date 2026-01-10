@@ -7,10 +7,12 @@ Download full CV [here](</Yicheng Zheng CV 2026.pdf>).
 
 **BS in Life Science**, ShanghaiTech University, *2014 - 2018*
 
+**Summer Program**, University of Padua, *2016*
+
 ## Research experience
 
 **Research Assistant**,
-Program of Neuroscience, Florida State University, *2022 - Present*
+Program of Neuroscience, Florida State University, *2021 - Present*
 - PI: Aaron Wilber, PhD
 
 **R&D Trainee**,
@@ -23,10 +25,26 @@ Behavior and System Neurobiology Lab, ShanghaiTech University, *2016 - 2018*
 
 ## Skills
 
-**Neurobiological:** Electrophysiological recording (tetrodes & silicon probes), animal behavior, histology
+**In vivo:**
+- **Rodent administration:** Oral, intravenous, intracranial subcutaneous, intraperitoneal
+- **Rodent anatomy & tissue collection:** Blood, brain, liver, intestines, etc.
+- **Electrophysiological recording:** Tetrodes, silicon probe
+- **Neurobiology:** Brain stereotaxis, heart perfusion, optogenetics, photometry recording
 
-**Programming:** Python, MATLAB
+**Bio-analyses:**
 
-**Languages:** Mandarin (Native), English (Fluent), Spanish (Two-semester-learning-in-college-but-never-used), Cantonese (Only-when-singing), Ukrainian (Duolinguo-2-day-streak) 
+PCR, Gel electrophoresis, ELISA
+
+**Histology:**
+- **Tissue section:** Frozen, paraffin
+- **Staining:** IHC, IF, Nissl
+
+**Programming:**
+
+Python, MATLAB, R
+
+**Languages:**
+
+Mandarin (Native), English (Fluent), Spanish (Two-semester-learning-in-college-but-never-used), Cantonese (Only-when-singing), Ukrainian (Duolinguo-2-day-streak) 
 
 
