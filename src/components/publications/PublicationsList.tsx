@@ -28,32 +28,32 @@ export default function PublicationsList({ config, publications, embedded = fals
   const [expandedAbstractId, setExpandedAbstractId] = useState<string | null>(null);
 
   // Extract unique years and types for filters
-  const years = useMemo(() => {
+    const years = useMemo(() => {
     const numericYears = Array.from(
-      new Set(
+        new Set(
         publications
-          .map((p) => p.year)
-          .filter((y): y is number => typeof y === 'number' && Number.isFinite(y) && y > 0)
-      )
+            .map(p => p.year)
+            .filter((y): y is number => typeof y === 'number' && Number.isFinite(y) && y > 0)
+        )
     ).sort((a, b) => b - a);
 
     const specialYearLabels = Array.from(
-      new Set(
+        new Set(
         publications
-          .map((p) => (p.yearLabel ?? '').trim())
-          .filter((lbl) => lbl.length > 0 && Number.isNaN(parseInt(lbl, 10)))
-      )
+            .map(p => (p.yearLabel ?? '').trim())
+            .filter(lbl => lbl.length > 0 && Number.isNaN(parseInt(lbl, 10)))
+        )
     ).sort((a, b) => {
-      // Always put "In review" last
-      const aIsInReview = a.toLowerCase() === 'in review';
-      const bIsInReview = b.toLowerCase() === 'in review';
-      if (aIsInReview && !bIsInReview) return 1;
-      if (!aIsInReview && bIsInReview) return -1;
-      return a.localeCompare(b);
+        // Always put "In review" last
+        const aIsInReview = a.toLowerCase() === 'in review';
+        const bIsInReview = b.toLowerCase() === 'in review';
+        if (aIsInReview && !bIsInReview) return 1;
+        if (!aIsInReview && bIsInReview) return -1;
+        return a.localeCompare(b);
     });
 
     return { numericYears, specialYearLabels };
-  }, [publications]);
+    }, [publications]);
 
   const types = useMemo(() => {
     const uniqueTypes = Array.from(new Set(publications.map((p) => p.type)));
@@ -71,11 +71,10 @@ export default function PublicationsList({ config, publications, embedded = fals
 
       const matchesYear =
         selectedYear === 'all'
-          ? true
-          : typeof selectedYear === 'number'
-          ? pub.year === selectedYear
-          : (pub.yearLabel ?? '').toLowerCase() === String(selectedYear).toLowerCase();
-
+            ? true
+            : typeof selectedYear === 'number'
+            ? pub.year === selectedYear
+            : (pub.yearLabel ?? '').toLowerCase() === String(selectedYear).toLowerCase();
       const matchesType = selectedType === 'all' || pub.type === selectedType;
 
       return matchesSearch && matchesYear && matchesType;
@@ -139,59 +138,59 @@ export default function PublicationsList({ config, publications, embedded = fals
               <div className="p-4 bg-neutral-50 dark:bg-neutral-800/50 rounded-lg border border-neutral-200 dark:border-neutral-800 flex flex-wrap gap-6">
                 {/* Year Filter */}
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 flex items-center">
+                <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 flex items-center">
                     <CalendarIcon className="h-4 w-4 mr-1" /> Year
-                  </label>
+                </label>
 
-                  <div className="flex flex-wrap gap-2">
-                    {/* All */}
+                <div className="flex flex-wrap gap-2">
+                {/* All */}
+                <button
+                    type="button"
+                    onClick={() => setSelectedYear('all')}
+                    className={cn(
+                    "px-3 py-1 text-xs rounded-full transition-colors",
+                    selectedYear === 'all'
+                        ? "bg-accent text-white"
+                        : "bg-white dark:bg-neutral-800 text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                    )}
+                >
+                    All
+                </button>
+
+                {/* Numeric years */}
+                {years.numericYears.map((year) => (
                     <button
-                      type="button"
-                      onClick={() => setSelectedYear('all')}
-                      className={cn(
-                        'px-3 py-1 text-xs rounded-full transition-colors',
-                        selectedYear === 'all'
-                          ? 'bg-accent text-white'
-                          : 'bg-white dark:bg-neutral-800 text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700'
-                      )}
+                    key={year}
+                    type="button"
+                    onClick={() => setSelectedYear(year)}
+                    className={cn(
+                        "px-3 py-1 text-xs rounded-full transition-colors",
+                        selectedYear === year
+                        ? "bg-accent text-white"
+                        : "bg-white dark:bg-neutral-800 text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                    )}
                     >
-                      All
+                    {year}
                     </button>
+                ))}
 
-                    {/* Numeric years */}
-                    {years.numericYears.map((year) => (
-                      <button
-                        key={year}
-                        type="button"
-                        onClick={() => setSelectedYear(year)}
-                        className={cn(
-                          'px-3 py-1 text-xs rounded-full transition-colors',
-                          selectedYear === year
-                            ? 'bg-accent text-white'
-                            : 'bg-white dark:bg-neutral-800 text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700'
-                        )}
-                      >
-                        {year}
-                      </button>
-                    ))}
-
-                    {/* Special labels (In review LAST) */}
-                    {years.specialYearLabels.map((label) => (
-                      <button
-                        key={label}
-                        type="button"
-                        onClick={() => setSelectedYear(label)}
-                        className={cn(
-                          'px-3 py-1 text-xs rounded-full transition-colors',
-                          selectedYear === label
-                            ? 'bg-accent text-white'
-                            : 'bg-white dark:bg-neutral-800 text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700'
-                        )}
-                      >
-                        {label}
-                      </button>
-                    ))}
-                  </div>
+                {/* Special labels (In review LAST) */}
+                {years.specialYearLabels.map((label) => (
+                    <button
+                    key={label}
+                    type="button"
+                    onClick={() => setSelectedYear(label)}
+                    className={cn(
+                        "px-3 py-1 text-xs rounded-full transition-colors",
+                        selectedYear === label
+                        ? "bg-accent text-white"
+                        : "bg-white dark:bg-neutral-800 text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                    )}
+                    >
+                    {label}
+                    </button>
+                ))}
+                </div>
                 </div>
 
                 {/* Type Filter */}
@@ -246,24 +245,16 @@ export default function PublicationsList({ config, publications, embedded = fals
               key={pub.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -3 }}
-              transition={{ duration: 0.6, delay: 0.4 * index }}
-              className="
-                bg-white dark:bg-neutral-900
-                p-6 rounded-xl
-                shadow-sm
-                border border-neutral-200 dark:border-neutral-800
-                hover:shadow-md
-                transition-all duration-200
-                hover:scale-[1.01]
-              "
+              transition={{ duration: 0.4, delay: 0.1 * index }}
+              className={`bg-white dark:bg-neutral-900 ${embedded ? 'p-4' : 'p-6'} rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-lg transition-all duration-200 hover:scale-[1.01]`}
             >
-              {/* TOP ROW: image + text */}
               <div className="flex flex-col md:flex-row md:items-stretch gap-6 w-full">
                 {/* TEXT */}
                 <div className="flex flex-col flex-1 min-w-0">
                   <div>
-                    <h3 className={`${embedded ? 'text-lg' : 'text-xl'} font-semibold text-primary mb-2 leading-tight`}>
+                    <h3
+                      className={`${embedded ? 'text-lg' : 'text-xl'} font-semibold text-primary mb-2 leading-tight`}
+                    >
                       {pub.doi ? (
                         <a
                           href={`https://doi.org/${pub.doi}`}
@@ -293,11 +284,7 @@ export default function PublicationsList({ config, publications, embedded = fals
                             {author.name}
                           </span>
                           {author.isCorresponding && (
-                            <sup
-                              className={`ml-0 ${
-                                author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-400'
-                              }`}
-                            >
+                            <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-400'}`}>
                               †
                             </sup>
                           )}
@@ -307,12 +294,14 @@ export default function PublicationsList({ config, publications, embedded = fals
                     </p>
 
                     <p className="text-sm font-medium text-neutral-800 dark:text-neutral-600 mb-3">
-                      {pub.journal || pub.conference}
-                      {(pub.yearLabel || pub.year) && `, ${pub.yearLabel ?? pub.year}`}
+                        {pub.journal || pub.conference}
+                        {(pub.yearLabel || pub.year) && `, ${pub.yearLabel ?? pub.year}`}
                     </p>
 
                     {pub.description && (
-                      <p className="text-sm text-neutral-600 dark:text-neutral-500 mb-4 line-clamp-3">{pub.description}</p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-500 mb-4 line-clamp-3">
+                        {pub.description}
+                      </p>
                     )}
                   </div>
 
@@ -346,6 +335,22 @@ export default function PublicationsList({ config, publications, embedded = fals
                         </button>
                       )}
                     </div>
+
+                    <AnimatePresence>
+                      {expandedAbstractId === pub.id && pub.abstract ? (
+                        <motion.div
+                          key={`abstract-${pub.id}`}
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="overflow-hidden mt-4"
+                        >
+                          <div className="bg-neutral-50 dark:bg-neutral-800 rounded-lg p-4 border border-neutral-200 dark:border-neutral-700">
+                            <p className="text-sm text-neutral-600 dark:text-neutral-500 leading-relaxed">{pub.abstract}</p>
+                          </div>
+                        </motion.div>
+                      ) : null}
+                    </AnimatePresence>
                   </div>
                 </div>
 
@@ -364,23 +369,6 @@ export default function PublicationsList({ config, publications, embedded = fals
                   </div>
                 )}
               </div>
-
-              {/* FULL-WIDTH ABSTRACT (outside the row, so it spans the card) */}
-              <AnimatePresence>
-                {expandedAbstractId === pub.id && pub.abstract ? (
-                  <motion.div
-                    key={`abstract-${pub.id}`}
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="overflow-hidden mt-6"
-                  >
-                    <div className="w-full bg-neutral-50 dark:bg-neutral-800 rounded-xl p-5 border border-neutral-200 dark:border-neutral-700">
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{pub.abstract}</p>
-                    </div>
-                  </motion.div>
-                ) : null}
-              </AnimatePresence>
             </motion.div>
           ))
         )}
