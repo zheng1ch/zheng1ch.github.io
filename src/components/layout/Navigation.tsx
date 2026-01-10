@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -21,6 +21,9 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
   const [scrolled, setScrolled] = useState(false);
   const [activeHash, setActiveHash] = useState('');
 
+  // ✅ One source of truth: filter hidden items once
+  const visibleItems = useMemo(() => items.filter((item) => !item.hidden), [items]);
+
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 20;
@@ -33,23 +36,14 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
 
   useEffect(() => {
     if (enableOnePageMode) {
-      // Set initial hash on client-side to avoid hydration mismatch
       setActiveHash(window.location.hash);
       const handleHashChange = () => setActiveHash(window.location.hash);
       window.addEventListener('hashchange', handleHashChange);
 
-      // Scroll Spy Logic
       const observerCallback = (entries: IntersectionObserverEntry[]) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Update active hash based on intersecting section
             const id = entry.target.id;
-            // Only update if we are not currently scrolling to a target (optional refinement, 
-            // but for now simple intersection is enough, we might want to debounce or check intersection ratio)
-            // We use history.replaceState to update URL without jumping or window.location.hash which might jump
-            // But for the nav highlighting, we just need to update local state if we want it to be responsive
-            // However, the requirement says "nav bar did not change". 
-            // Let's update the activeHash state.
             setActiveHash(id === 'about' ? '' : `#${id}`);
           }
         });
@@ -57,14 +51,14 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
 
       const observerOptions = {
         root: null,
-        rootMargin: '-20% 0px -60% 0px', // Adjust these margins to trigger when section is roughly in view
-        threshold: 0
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0,
       };
 
       const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-      // Observe all sections
-      items.forEach(item => {
+      // ✅ Observe only visible page sections
+      visibleItems.forEach((item) => {
         if (item.type === 'page') {
           const element = document.getElementById(item.target);
           if (element) observer.observe(element);
@@ -76,7 +70,7 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
         observer.disconnect();
       };
     }
-  }, [enableOnePageMode, items]);
+  }, [enableOnePageMode, visibleItems]);
 
   return (
     <Disclosure as="nav" className="fixed top-0 left-0 right-0 z-50">
@@ -96,11 +90,7 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center h-16 lg:h-20">
                 {/* Logo/Name */}
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex-shrink-0"
-                >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-shrink-0">
                   <Link
                     href="/"
                     className="text-xl lg:text-2xl font-semibold text-primary hover:text-accent transition-colors duration-200 font-logo"
@@ -113,16 +103,14 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
                 <div className="hidden lg:block">
                   <div className="ml-10 flex items-center space-x-8">
                     <div className="flex items-baseline space-x-8">
-                      {items.filter(item => !item.hidden).map((item) => {
+                      {visibleItems.map((item) => {
                         const isActive = enableOnePageMode
                           ? activeHash === `#${item.target}` || (!activeHash && item.target === 'about')
-                          : (item.href === '/'
+                          : item.href === '/'
                             ? pathname === '/'
-                            : pathname.startsWith(item.href));
+                            : pathname.startsWith(item.href);
 
-                        const href = enableOnePageMode
-                          ? `/#${item.target}`
-                          : item.href;
+                        const href = enableOnePageMode ? `/#${item.target}` : item.href;
 
                         return (
                           <Link
@@ -132,9 +120,7 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
                             onClick={() => enableOnePageMode && setActiveHash(`#${item.target}`)}
                             className={cn(
                               'relative px-3 py-2 text-sm font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm',
-                              isActive
-                                ? 'text-primary'
-                                : 'text-neutral-600 hover:text-primary'
+                              isActive ? 'text-primary' : 'text-neutral-600 hover:text-primary'
                             )}
                           >
                             <span className="relative z-10">{item.title}</span>
@@ -143,11 +129,7 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
                                 layoutId="activeTab"
                                 className="absolute inset-0 bg-accent/10 rounded-lg"
                                 initial={false}
-                                transition={{
-                                  type: 'spring',
-                                  stiffness: 500,
-                                  damping: 30
-                                }}
+                                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                               />
                             )}
                           </Link>
@@ -163,10 +145,7 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
                   <ThemeToggle />
                   <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:text-primary hover:bg-neutral-100 dark:hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent transition-colors duration-200">
                     <span className="sr-only">Open main menu</span>
-                    <motion.div
-                      animate={{ rotate: open ? 180 : 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
+                    <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
                       {open ? (
                         <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                       ) : (
@@ -191,15 +170,20 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
                   className="lg:hidden bg-background/95 backdrop-blur-xl border-b border-neutral-200/50 shadow-lg"
                 >
                   <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                    {items.map((item, index) => {
+                    {/* ✅ use visibleItems here too */}
+                    {visibleItems.map((item, index) => {
                       const isActive = enableOnePageMode
-                        ? (item.href === '/' ? pathname === '/' && !activeHash : activeHash === `#${item.target}`)
-                        : (item.href === '/'
+                        ? item.href === '/'
+                          ? pathname === '/' && !activeHash
+                          : activeHash === `#${item.target}`
+                        : item.href === '/'
                           ? pathname === '/'
-                          : pathname.startsWith(item.href));
+                          : pathname.startsWith(item.href);
 
                       const href = enableOnePageMode
-                        ? (item.href === '/' ? '/' : `/#${item.target}`)
+                        ? item.href === '/'
+                          ? '/'
+                          : `/#${item.target}`
                         : item.href;
 
                       return (
