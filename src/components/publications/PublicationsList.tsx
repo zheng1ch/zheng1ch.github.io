@@ -246,8 +246,17 @@ export default function PublicationsList({ config, publications, embedded = fals
               key={pub.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 * index }}
-              className="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-md transition-all duration-200"
+              whileHover={{ y: -3 }}
+              transition={{ duration: 0.6, delay: 0.4 * index }}
+              className="
+                bg-white dark:bg-neutral-900
+                p-6 rounded-xl
+                shadow-sm
+                border border-neutral-200 dark:border-neutral-800
+                hover:shadow-md
+                transition-all duration-200
+                hover:scale-[1.01]
+              "
             >
               {/* TOP ROW: image + text */}
               <div className="flex flex-col md:flex-row md:items-stretch gap-6 w-full">
