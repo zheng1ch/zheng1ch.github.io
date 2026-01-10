@@ -3,15 +3,16 @@ title = "Playground"
 description = "Some little random side projects which are not serious at all."
 
 [[items]]
-title = "My flights record"
-content = "I've been recording all my flights and made this plot using Python."
-link = "/flights"
-image = "/flights_dark_rect.png"
-
-[[items]]
 title = "Mood tracking 2025"
 content = "I tracked my mood every day in 2025 and maybe there's something interesting."
 link = "/mood_tracking_2025"
+image = "/Mood2025/Cover.png"
+
+[[items]]
+title = "My flights record"
+content = "I've been recording all my flights and made this plot using Python."
+link = "/flights"
+image = "/flights.png"
 
 [[items]]
 title = "Visitors map"
