@@ -169,9 +169,9 @@ That’s very nice of Taylor that she still gave us hope after all the hopelessn
 ## Methods
 **Data acquisition:** Mood scores were recorded primarily near the end of each day using Microsoft Excel. In cases of occasional delayed entry, data were logged within three days to minimize recall bias and preserve validity. Lifestyle variables were extracted from Apple Health. Music listening time was obtained from Apple Music monthly Replay reports.
 
-**Data visualization:** All plots were generated in MATLAB. Individual observations in box plots were jittered to improve visualization. Final figures were assembled and refined in Adobe Illustrator 2026.
+**Data visualization:** All plots were generated in MATLAB R2024b. Individual observations in box plots were jittered to improve visualization. Final figures were assembled and refined in Adobe Illustrator 2026.
 
-**Statistics:** Statistical analyses were performed in GraphPad Prism 10 and MATLAB. For each factor, main effects and interaction terms were evaluated where applicable. Unless otherwise stated, p < 0.05 was considered statistically significant.
+**Statistics:** Statistical analyses were performed in GraphPad Prism 10 and MATLAB R2024b. For each factor, main effects and interaction terms were evaluated where applicable. Unless otherwise stated, p < 0.05 was considered statistically significant.
 
 ## Data and code availability
 Custom analysis code is available upon reasonable request.
