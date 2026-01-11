@@ -164,3 +164,16 @@ That’s very nice of Taylor that she still gave us hope after all the hopelessn
 <a href="/Mood2025/IMG_8023.jpeg" target="_blank">
   <img src="/Mood2025/IMG_8023.jpeg" class="mx-auto w-1/2 max-w-4xl" />
 </a>
+
+
+## Methods
+**Data acquisition:** Mood scores were recorded primarily near the end of each day using Microsoft Excel. In cases of occasional delayed entry, data were logged within three days to minimize recall bias and preserve validity. Lifestyle variables were extracted from Apple Health. Music listening time was obtained from Apple Music monthly Replay reports.
+
+**Data visualization:** All plots were generated in MATLAB. Individual observations in box plots were jittered to improve visualization. Final figures were assembled and refined in Adobe Illustrator 2026.
+
+**Statistics:** Statistical analyses were performed in GraphPad Prism 10 and MATLAB. For each factor, main effects and interaction terms were evaluated where applicable. Unless otherwise stated, p < 0.05 was considered statistically significant.
+
+## Data and code availability
+Custom analysis code is available upon reasonable request.
+
+Raw data supporting the current study will be shared upon request. (Actually don’t even think about it. I am not giving you my body weights. 🙂)
