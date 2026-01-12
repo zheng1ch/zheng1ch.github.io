@@ -37,6 +37,11 @@ export async function generateMetadata(): Promise<Metadata> {
     authors: [{ name: config.author.name }],
     creator: config.author.name,
     publisher: config.author.name,
+    
+    verification: {
+      google: "xJyfR1n9lvCLRc7cfJ4K13_QKCH6KQebEVkxt9eXcns",
+    },
+    
     icons: {
       icon: config.site.favicon,
     },
@@ -79,9 +84,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-export const metadata = {
-  verification: {
-    google: '<meta name="google-site-verification" content="xJyfR1n9lvCLRc7cfJ4K13_QKCH6KQebEVkxt9eXcns" />',
-  },
-};
