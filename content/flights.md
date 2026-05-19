@@ -1,6 +1,6 @@
 I like traveling and love to record, including flights, trains, road trips, tickets, etc..
 
-For example, here is an overview of all my flights (last updated: 2025/12):
+For example, here is an overview of all my flights (last updated: 2026/07):
 
 [![My Flights Map](/flights_dark_rect.png)](/flights_dark_rect.png)
 
