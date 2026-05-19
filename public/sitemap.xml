@@ -1,28 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-  <url>
-    <loc>https://zheng1ch.github.io/</loc>
-  </url>
 
-  <url>
-    <loc>https://zheng1ch.github.io/publications</loc>
-  </url>
+<url>
+  <loc>https://zheng1ch.github.io/</loc>
+  <lastmod>2026-05-19T02:28:01+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://zheng1ch.github.io/publications/</loc>
+  <lastmod>2026-05-19T02:28:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://zheng1ch.github.io/posters/</loc>
+  <lastmod>2026-05-19T02:28:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://zheng1ch.github.io/cv/</loc>
+  <lastmod>2026-05-19T02:28:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://zheng1ch.github.io/playground/</loc>
+  <lastmod>2026-05-19T02:28:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://zheng1ch.github.io/posters/YichengZhengCRaNECon26.pdf</loc>
+  <lastmod>2026-05-19T02:28:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://zheng1ch.github.io/posters/YichengZhengSfN2025.pdf</loc>
+  <lastmod>2026-05-19T02:28:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://zheng1ch.github.io/posters/YichengZhengSfN2024.pdf</loc>
+  <lastmod>2026-05-19T02:28:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://zheng1ch.github.io/posters/YichengZhengSfN2023.pdf</loc>
+  <lastmod>2026-05-19T02:28:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://zheng1ch.github.io/posters/YichengZhengSfN2022.pdf</loc>
+  <lastmod>2026-05-19T02:28:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://zheng1ch.github.io/Yicheng%20Zheng%20CV%202026.pdf</loc>
+  <lastmod>2026-05-19T02:28:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://zheng1ch.github.io/mood_tracking_2025/</loc>
+  <lastmod>2026-05-19T02:28:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://zheng1ch.github.io/flights/</loc>
+  <lastmod>2026-05-19T02:28:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
 
-  <url>
-    <loc>https://zheng1ch.github.io/cv</loc>
-  </url>
-
-  <url>
-    <loc>https://zheng1ch.github.io/playground</loc>
-  </url>
-
-  <url>
-    <loc>https://zheng1ch.github.io/flights</loc>
-  </url>
-
-  <url>
-    <loc>https://zheng1ch.github.io/posters</loc>
-  </url>
 
 </urlset>
