@@ -14,8 +14,8 @@ content = "I've been recording all my flights and made this plot using Python."
 link = "/flights"
 image = "/flights.png"
 
-[[items]]
-title = "Visitors map"
-# subtitle = "2025-08-07"
-content = "Let's see who visited my site."
-link = "/MapVisitors"
+# [[items]]
+# title = "Visitors map"
+# # subtitle = "2025-08-07"
+# content = "Let's see who visited my site."
+# link = "/MapVisitors"
