@@ -85,11 +85,11 @@ function formatDuration(hours:number){return hours<1?`${Math.round(hours*60)} mi
 function aircraftAbbreviation(name:string){return name.replace(/^Airbus\s+/,'').replace(/^Boeing\s+/,'B').replace(/^Embraer RJ\s*/,'ERJ-').replace(/^Embraer\s+/,'E').replace(/^Bombardier CRJ\s*/,'CRJ-').replace(/^Bombardier Dash 8\s*/,'DHC-8-').replace(/^McDonnell Douglas\s+/,'MD-').replace(' ER','ER').replace(/\s+/g,'');}
 
 export default function FlightMap({ flights }: Props) {
-  const mapNode=useRef<HTMLDivElement>(null), mapRef=useRef<GoogleMapInstance|null>(null), mapThemeWasChosen=useRef(false);
+  const mapNode=useRef<HTMLDivElement>(null), mapRef=useRef<GoogleMapInstance|null>(null);
   const [query,setQuery]=useState(''), [year,setYear]=useState('all'), [mapError,setMapError]=useState(''), [mapTheme,setMapTheme]=useState<MapTheme|null>(null);
   const [unit,setUnit]=useState<'km'|'mi'>('mi');
-  useEffect(()=>{const sync=()=>{if(!mapThemeWasChosen.current)setMapTheme(document.documentElement.classList.contains('dark')?'dark':'light');};sync();const observer=new MutationObserver(sync);observer.observe(document.documentElement,{attributes:true,attributeFilter:['class']});return()=>observer.disconnect();},[]);
-  const chooseMapTheme=(theme:MapTheme)=>{mapThemeWasChosen.current=true;setMapTheme(theme);};
+  useEffect(()=>{const sync=()=>setMapTheme(document.documentElement.classList.contains('dark')?'dark':'light');sync();const observer=new MutationObserver(sync);observer.observe(document.documentElement,{attributes:true,attributeFilter:['class']});return()=>observer.disconnect();},[]);
+  const chooseMapTheme=(theme:MapTheme)=>setMapTheme(theme);
   const years=useMemo(()=>[...new Set(flights.map(f=>f.date.slice(0,4)))].sort().reverse(),[flights]);
   const visible=useMemo(()=>flights.filter(f=>{const airline=airlineInfo(f.airline);const haystack=`${airportSearch(f.from)} ${airportSearch(f.to)} ${f.airline} ${airline.iata} ${airline.name} ${f.flight} ${f.aircraft}`.toLowerCase();return(year==='all'||f.date.startsWith(year))&&(!query||haystack.includes(query.toLowerCase()));}),[flights,year,query]);
   const analytics=useMemo(()=>{
