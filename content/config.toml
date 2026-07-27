@@ -2,7 +2,7 @@
 title = "Yicheng Zheng"
 description = "PhD candidate at Florida State University."
 favicon = "/favicon.png"
-last_updated = "Jan 9, 2026"
+last_updated = "Jul 2026"
 
 [author]
 name = "Yicheng Zheng"
@@ -95,4 +95,3 @@ type = "page"
 target = "mood_tracking_2025"
 href = "/mood_tracking_2025"
 hidden = true
-
