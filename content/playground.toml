@@ -9,10 +9,10 @@ link = "/mood_tracking_2025"
 image = "/Mood2025/Cover.png"
 
 [[items]]
-title = "My flights record"
+title = "Flights record"
 content = "Explore my Flighty history through an interactive route map and detailed flight statistics."
 link = "/flights"
-image = "/flights_dark_rect.png"
+
 
 # [[items]]
 # title = "Visitors map"
