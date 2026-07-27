@@ -3,6 +3,9 @@ title = "About"
 
 [profile]
 research_interests = [
+  "Spatial Navigation & Memory",
+  "Hippocampal–Cortical Networks",
+  "Neural Population Dynamics",
   "Behavioral & Systems Neuroscience",
   "Alzheimer’s Disease"
 ]
@@ -25,4 +28,3 @@ limit = 5
 # type = "list"
 # title = "News"
 # source = "news.toml"
-
