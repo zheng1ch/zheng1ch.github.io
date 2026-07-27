@@ -241,8 +241,8 @@ body {
 }
 
 :root {
-  --font-body: var(--font-inter);
-  --font-heading: var(--font-nunito);
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Nunito Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Body text */
