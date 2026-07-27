@@ -10,9 +10,9 @@ image = "/Mood2025/Cover.png"
 
 [[items]]
 title = "My flights record"
-content = "I've been recording all my flights and made this plot using Python."
+content = "Explore my Flighty history through an interactive route map and detailed flight statistics."
 link = "/flights"
-image = "/flights.png"
+image = "/flights_dark_rect.png"
 
 # [[items]]
 # title = "Visitors map"
