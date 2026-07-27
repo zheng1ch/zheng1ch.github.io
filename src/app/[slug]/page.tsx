@@ -17,7 +17,7 @@ import { Metadata } from 'next';
 export function generateStaticParams() {
     const config = getConfig();
     return config.navigation
-        .filter(nav => nav.type === 'page' && nav.target !== 'about') // 'about' is handled by root page
+        .filter(nav => nav.type === 'page' && !['about', 'flights'].includes(nav.target)) // dedicated routes handle these pages
         .map(nav => ({
             slug: nav.target,
         }));
@@ -70,5 +70,4 @@ function TextPageWrapper({ config }: { config: TextPageConfig }) {
     const content = getMarkdownContent(config.source);
     return <TextPage config={config} content={content} />;
 }
-
 
