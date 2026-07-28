@@ -393,10 +393,12 @@ h1, h2, h3, h4, h5, h6 {
 .dark .rank-switch button.active { background:var(--neutral-800); }
 .fr24-rank-grid { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:1rem; }
 .fr24-rank-grid>article { grid-column:span 3; }
-.fr24-rank-grid>article:nth-child(n+5) { grid-column:span 4; }
+.fr24-rank-grid>article:nth-child(5) { grid-column:span 6; }
+.fr24-rank-grid>article:nth-child(n+6) { grid-column:span 3; }
 .rank-list { display:flex; flex-direction:column; gap:.65rem; }
 .ranking-panel { display:flex; height:26.125rem; flex-direction:column; }
 .rank-list>div { display:grid; grid-template-columns:6rem minmax(3rem,1fr) 4.7rem; align-items:center; gap:.65rem; font-size:.82rem; }
+.route-ranking .rank-list>div { grid-template-columns:9rem minmax(3rem,1fr) 4.7rem; }
 .rank-list span { overflow:hidden; color:var(--neutral-600); text-overflow:ellipsis; white-space:nowrap; }
 .rank-list .airline-label { display:flex; align-items:center; gap:.4rem; }
 .airline-label img { width:1.05rem; height:1.05rem; flex-shrink:0; object-fit:contain; background:transparent; }
@@ -430,5 +432,5 @@ h1, h2, h3, h4, h5, h6 {
 .bar-cell small { overflow:hidden; color:var(--neutral-500); font-size:.62rem; text-overflow:ellipsis; white-space:nowrap; }
 .stats-methodology { color:var(--neutral-500); font-size:.72rem; line-height:1.5; }
 .airline-label img { background:transparent; }
-@media(max-width:1024px){.fr24-summary-grid,.fr24-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.fr24-rank-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.fr24-rank-grid>article,.fr24-rank-grid>article:nth-child(n+5){grid-column:auto}.fr24-chart-grid{grid-template-columns:1fr}.fr24-chart:first-child{grid-column:auto}}
-@media(max-width:640px){.fr24-summary-grid,.fr24-category-grid,.fr24-rank-grid{grid-template-columns:1fr}.fr24-ranking-header{align-items:flex-start;flex-direction:column}.ranking-panel{height:auto;min-height:25rem}.rank-list>div{grid-template-columns:minmax(4rem,.8fr) 1fr auto}.panel-header{align-items:flex-start;flex-direction:column}}
+@media(max-width:1024px){.fr24-summary-grid,.fr24-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.fr24-rank-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.fr24-rank-grid>article,.fr24-rank-grid>article:nth-child(5),.fr24-rank-grid>article:nth-child(n+6){grid-column:auto}.fr24-chart-grid{grid-template-columns:1fr}.fr24-chart:first-child{grid-column:auto}}
+@media(max-width:640px){.fr24-summary-grid,.fr24-category-grid,.fr24-rank-grid{grid-template-columns:1fr}.fr24-ranking-header{align-items:flex-start;flex-direction:column}.ranking-panel{height:auto;min-height:25rem}.rank-list>div,.route-ranking .rank-list>div{grid-template-columns:minmax(7.5rem,1fr) minmax(3rem,1fr) auto}.panel-header{align-items:flex-start;flex-direction:column}}
