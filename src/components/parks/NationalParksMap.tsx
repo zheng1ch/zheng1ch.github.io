@@ -74,16 +74,16 @@ export default function NationalParksMap() {
     return () => document.removeEventListener('pointerdown', closeSort);
   }, []);
   const selectedPark = selected ? NATIONAL_PARKS.find(park => park.id === selected) ?? null : null;
-  const visible = useMemo(() => {
-    const parks = NATIONAL_PARKS.filter(park => filter === 'all' || (filter === 'visited' ? park.visited : !park.visited));
-    return [...parks].sort((a, b) => {
+  const directoryParks = useMemo(() => {
+    return [...NATIONAL_PARKS].sort((a, b) => {
       if (sort === 'state') return a.state.localeCompare(b.state) || a.name.localeCompare(b.name);
       if (sort === 'status') return Number(Boolean(b.visited)) - Number(Boolean(a.visited)) || a.name.localeCompare(b.name);
       if (sort === 'recent') return (b.visited ?? '').localeCompare(a.visited ?? '') || a.name.localeCompare(b.name);
       if (sort === 'earliest') return (a.visited ? 0 : 1) - (b.visited ? 0 : 1) || (a.visited ?? '').localeCompare(b.visited ?? '') || a.name.localeCompare(b.name);
       return a.name.localeCompare(b.name);
     });
-  }, [filter, sort]);
+  }, [sort]);
+  const visible = useMemo(() => directoryParks.filter(park => filter === 'all' || (filter === 'visited' ? park.visited : !park.visited)), [directoryParks, filter]);
   const visited = NATIONAL_PARKS.filter(park => park.visited).length;
   const reduceMotion = useReducedMotion();
   const openPark = (id: string) => { setIsPhotoNavigation(false); setSelected(id); setPhotoIndex(0); };
@@ -115,7 +115,8 @@ export default function NationalParksMap() {
         <div className="parks-filters" aria-label="Filter parks">
           {(['all', 'visited', 'unvisited'] as Filter[]).map(value => (
             <button key={value} type="button" onClick={() => setFilter(value)} aria-pressed={filter === value}>
-              {value === 'all' ? 'All parks' : value === 'visited' ? 'Visited' : 'Still to go'}
+              {filter === value && <motion.i className="parks-filter-pill" layoutId="parks-filter" transition={{ type: 'spring', stiffness: 420, damping: 34 }} />}
+              <span>{value === 'all' ? 'All parks' : value === 'visited' ? 'Visited' : 'Still to go'}</span>
             </button>
           ))}
         </div>
@@ -139,7 +140,7 @@ export default function NationalParksMap() {
                 aria-label={`${park.name}, ${isVisited ? `visited ${prettyDate(park.visited)}` : 'not visited'}`}
                 title={park.name}
               >
-                <TreePine aria-hidden="true" />
+                <motion.span key={filter} initial={reduceMotion ? false : { scale: .78, y: 3 }} animate={{ scale: 1, y: 0 }} transition={{ type: 'spring', stiffness: 430, damping: 28 }}><TreePine aria-hidden="true" /></motion.span>
               </button>
             );
           })}
@@ -268,13 +269,13 @@ export default function NationalParksMap() {
           <button className="parks-directory-toggle" type="button" onClick={() => setDirectoryOpen(open => !open)} aria-expanded={directoryOpen}>
             <span className="parks-directory-chevron"><ChevronDown size={17}/></span>
             <h2>Park directory</h2>
-            <small>{visible.length} parks</small>
           </button>
           {directoryOpen && <div className="parks-sort" ref={sortRef}>
             <button className="parks-sort-trigger" type="button" onClick={() => setSortOpen(open => !open)} aria-expanded={sortOpen} aria-haspopup="menu">
               <ArrowDownUp size={14}/><span>Sort</span><strong>{SORT_LABELS[sort]}</strong><ChevronDown size={14}/>
             </button>
-            {sortOpen && <div role="menu" aria-label="Sort parks">
+            <AnimatePresence>
+            {sortOpen && <motion.div role="menu" aria-label="Sort parks" initial={reduceMotion ? false : { opacity: 0, y: -6, scale: .97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -4, scale: .98 }} transition={{ duration: reduceMotion ? 0 : .18, ease: [.22, 1, .36, 1] }}>
               {(Object.keys(SORT_LABELS) as Sort[]).map(value => (
                 <button key={value} type="button" role="menuitemradio" aria-checked={sort === value} onClick={() => {
                   setSort(value);
@@ -283,12 +284,13 @@ export default function NationalParksMap() {
                   <span>{SORT_LABELS[value]}</span>{sort === value && <Check size={14}/>} 
                 </button>
               ))}
-            </div>}
+            </motion.div>}
+            </AnimatePresence>
           </div>}
         </div>
         <AnimatePresence initial={false}>
         {directoryOpen && <motion.div className="parks-grid" initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: reduceMotion ? 0 : .3 }}>
-          {visible.map(park => (
+          {directoryParks.map(park => (
             <button key={park.id} type="button" className={park.visited ? 'visited' : ''} onClick={() => { openPark(park.id); window.scrollTo({ top: 180, behavior: 'smooth' }); }}>
               <TreePine className="park-list-tree" aria-hidden="true" />
               <span><strong>{park.name} <em>{STATE_ABBREVIATIONS[park.state] ?? park.state}</em></strong><small>{park.visited ? prettyDate(park.visited) : 'Not visited yet'}</small></span>

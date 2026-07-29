@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { LocateFixed, Map as MapIcon, Moon, Satellite, Search, X } from 'lucide-react';
+import { Check, ChevronDown, LocateFixed, Map as MapIcon, Moon, Satellite, Search, X } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { AIRPORTS, FlightRecord } from '@/lib/flightMap';
 
 interface Props { flights: FlightRecord[] }
@@ -86,8 +87,12 @@ function aircraftAbbreviation(name:string){return name.replace(/^Airbus\s+/,'').
 
 export default function FlightMap({ flights }: Props) {
   const mapNode=useRef<HTMLDivElement>(null), mapRef=useRef<GoogleMapInstance|null>(null);
+  const filterRef=useRef<HTMLDivElement>(null);
   const [query,setQuery]=useState(''), [year,setYear]=useState('all'), [mapError,setMapError]=useState(''), [mapTheme,setMapTheme]=useState<MapTheme|null>(null);
+  const [filterOpen,setFilterOpen]=useState(false);
   const [unit,setUnit]=useState<'km'|'mi'>('mi');
+  const reduceMotion=useReducedMotion();
+  useEffect(()=>{const close=(event:PointerEvent)=>{if(!filterRef.current?.contains(event.target as Node))setFilterOpen(false);};document.addEventListener('pointerdown',close);return()=>document.removeEventListener('pointerdown',close);},[]);
   useEffect(()=>{const sync=()=>setMapTheme(document.documentElement.classList.contains('dark')?'dark':'light');sync();const observer=new MutationObserver(sync);observer.observe(document.documentElement,{attributes:true,attributeFilter:['class']});return()=>observer.disconnect();},[]);
   const chooseMapTheme=(theme:MapTheme)=>setMapTheme(theme);
   const years=useMemo(()=>[...new Set(flights.map(f=>f.date.slice(0,4)))].sort().reverse(),[flights]);
@@ -138,10 +143,22 @@ export default function FlightMap({ flights }: Props) {
   return <div className="space-y-6">
     <div className="flex flex-col sm:flex-row gap-3">
       <label className="relative flex-1"><Search className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" size={17}/><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search airport, airline, flight…" className="w-full rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 py-2.5 pl-10 pr-10 outline-none focus:border-accent"/>{query&&<button onClick={()=>setQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400" aria-label="Clear search"><X size={17}/></button>}</label>
-      <select value={year} onChange={e=>setYear(e.target.value)} className="rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-4 py-2.5 outline-none focus:border-accent"><option value="all">All years</option>{years.map(y=><option key={y} value={y}>{y}</option>)}</select>
+      <div className="flight-filter" ref={filterRef}>
+        <button className="flight-filter-trigger" type="button" onClick={()=>setFilterOpen(open=>!open)} aria-expanded={filterOpen} aria-haspopup="menu">
+          <span>{year==='all'?'All years':year}</span><ChevronDown size={15}/>
+        </button>
+        <AnimatePresence>
+          {filterOpen&&<motion.div className="flight-filter-menu" role="menu" aria-label="Filter flights by year" initial={reduceMotion?false:{opacity:0,y:-6,scale:.97}} animate={{opacity:1,y:0,scale:1}} exit={reduceMotion?{opacity:0}:{opacity:0,y:-4,scale:.98}} transition={{duration:reduceMotion?0:.18,ease:[.22,1,.36,1]}}>
+            {['all',...years].map(value=><button key={value} type="button" role="menuitemradio" aria-checked={year===value} onClick={()=>{setYear(value);setFilterOpen(false);}}><span>{value==='all'?'All years':value}</span>{year===value&&<Check size={14}/>}</button>)}
+          </motion.div>}
+        </AnimatePresence>
+      </div>
     </div>
     <div className="flight-map-shell relative overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 shadow-xl">
       <div ref={mapNode} className="flight-map"/>
+      <AnimatePresence initial={false}>
+        {mapTheme&&<motion.div key={mapTheme} className={`flight-map-wash is-${mapTheme}`} initial={reduceMotion?false:{opacity:.42}} animate={{opacity:0}} exit={{opacity:0}} transition={{duration:reduceMotion?0:.34,ease:'easeOut'}} aria-hidden="true"/>}
+      </AnimatePresence>
       <div className="absolute left-4 top-4 z-[500] flex flex-wrap gap-2">
         <button onClick={fitRoutes} className="map-action"><LocateFixed size={16}/> Fit routes</button>
       </div>
@@ -159,7 +176,7 @@ export default function FlightMap({ flights }: Props) {
   </div>;
 }
 
-function MapStyleButton({active,onClick,icon,label}:{active:boolean,onClick:()=>void,icon:React.ReactNode,label:string}){return <button onClick={onClick} className={active?'active':''}>{icon}<span>{label}</span></button>}
+function MapStyleButton({active,onClick,icon,label}:{active:boolean,onClick:()=>void,icon:React.ReactNode,label:string}){return <button onClick={onClick} className={active?'active':''}>{active&&<motion.i className="map-style-pill" layoutId="flight-map-style" transition={{type:'spring',stiffness:420,damping:34}}/>}<span className="map-style-content">{icon}<span>{label}</span></span></button>}
 function formatDistance(km:number,unit:'km'|'mi'){return Math.round(unit==='km'?km:km*.621371).toLocaleString()}
 function barWidth(value:number,max:number){return `${(value/Math.max(1,max)*100).toFixed(4)}%`}
 
