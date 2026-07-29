@@ -1,3 +1,4 @@
 type = "text"
 title = "Mood tracking 2025"
+description = "A year of daily mood data, visualized through the rhythms, seasons, and events that shaped it."
 source = "mood_tracking_2025.md"

@@ -14,10 +14,11 @@ export default function FlightsPage() {
   const flights = parseFlightyCsv(csv);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
-      <header className="mb-8">
-        <h1 className="text-4xl lg:text-5xl font-serif font-bold text-primary">My flights record</h1>
-        <p className="mt-3 text-neutral-600 dark:text-neutral-500">
+    <div className="playground-post-page">
+      <header className="playground-post-hero">
+        <p className="playground-post-kicker">Playground · Flight log</p>
+        <h1 className="playground-post-title">Flights record</h1>
+        <p className="playground-post-intro">
           An interactive record of the places, routes, and aircraft that have carried me around the world.
         </p>
       </header>

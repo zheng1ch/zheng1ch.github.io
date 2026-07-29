@@ -3,16 +3,22 @@ title = "Playground"
 description = "Some little random side projects which are not serious at all."
 
 [[items]]
+title = "Flights record"
+content = "Explore my Flighty history through an interactive route map and detailed flight statistics."
+link = "/flights"
+image = "/flights.jpg"
+
+[[items]]
+title = "National Park Checklist"
+content = "An interactive map of the national parks I've visited—and the adventures still ahead."
+link = "/national-parks"
+image = "/yellowstone.jpeg"
+
+[[items]]
 title = "Mood tracking 2025"
 content = "I tracked my mood every day in 2025 and maybe there's something interesting."
 link = "/mood_tracking_2025"
 image = "/Mood2025/Cover.png"
-
-[[items]]
-title = "Flights record"
-content = "Explore my Flighty history through an interactive route map and detailed flight statistics."
-link = "/flights"
-
 
 # [[items]]
 # title = "Visitors map"

@@ -19,7 +19,7 @@ export default function CardPage({
       transition={{ duration: 0.6, delay: 0.4 }}
     >
       <div className={embedded ? 'mb-4' : 'mb-8'}>
-        <h1 className={`${embedded ? 'text-2xl' : 'text-4xl'} font-serif font-bold text-primary mb-4`}>
+            <h1 className={`${embedded ? 'text-2xl' : 'text-4xl'} font-bold text-primary mb-4`}>
           {config.title}
         </h1>
         {config.description && (
@@ -107,7 +107,8 @@ export default function CardPage({
                       alt={item.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 192px"
-                      className="object-cover"
+                      className="object-cover object-center"
+                      style={{ objectFit: 'cover', objectPosition: 'center' }}
                       priority={false}
                     />
                   </div>

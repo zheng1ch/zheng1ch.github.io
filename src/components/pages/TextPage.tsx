@@ -60,6 +60,7 @@ const remarkSlugStable: Pluggable = () => {
 };
 
 export default function TextPage({ config, content, embedded = false }: TextPageProps) {
+  const isMoodPost = !embedded && config.source.includes('mood_tracking_2025');
   // Build TOC from markdown, skipping fenced code blocks so TOC matches real headings.
   const tocTree: TocNode[] = useMemo(() => {
     const slugger = new GithubSlugger();
@@ -225,31 +226,32 @@ export default function TextPage({ config, content, embedded = false }: TextPage
         )}
 
         <div className="flex-1 min-w-0">
-          <header className={embedded ? 'mb-6 space-y-2' : 'mb-12 space-y-3'}>
-            <h1 className={`${embedded ? 'text-2xl' : 'text-4xl'} font-serif font-bold text-primary`}>
+          <header className={isMoodPost ? 'playground-post-hero' : embedded ? 'mb-6 space-y-2' : 'mb-12 space-y-3'}>
+            {isMoodPost && <p className="playground-post-kicker">Playground · Personal data</p>}
+            <h1 className={isMoodPost ? 'playground-post-title' : `${embedded ? 'text-2xl' : 'text-4xl'} font-bold text-primary`}>
               {config.title}
             </h1>
             {config.description && (
-              <p className="text-base text-neutral-600 dark:text-neutral-500 max-w-2xl leading-relaxed">
+              <p className={isMoodPost ? 'playground-post-intro' : 'text-base text-neutral-600 dark:text-neutral-500 max-w-2xl leading-relaxed'}>
                 {config.description}
               </p>
             )}
           </header>
 
-          <div className="text-neutral-700 dark:text-neutral-600 leading-relaxed">
+          <div className={`${isMoodPost ? 'playground-post-body ' : ''}text-neutral-700 dark:text-neutral-600 leading-relaxed`}>
             <ReactMarkdown
               remarkPlugins={[remarkSlugStable]}
               rehypePlugins={[rehypeRaw]}
               components={{
                 h1: ({ children, ...props }) => (
-                  <h1 {...props} className="text-3xl font-serif font-bold text-primary mt-8 mb-4">
+                  <h1 {...props} className="text-3xl font-bold text-primary mt-8 mb-4">
                     {children}
                   </h1>
                 ),
                 h2: ({ children, ...props }) => (
                   <h2
                     {...props}
-                    className="scroll-mt-28 text-2xl font-serif font-bold text-primary mt-8 mb-4 border-b border-neutral-200 dark:border-neutral-800 pb-2"
+                    className="scroll-mt-28 text-2xl font-bold text-primary mt-8 mb-4 border-b border-neutral-200 dark:border-neutral-800 pb-2"
                   >
                     {children}
                   </h2>
