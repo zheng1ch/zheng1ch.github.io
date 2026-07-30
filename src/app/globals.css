@@ -251,8 +251,10 @@ body {
 }
 
 /* National parks explorer */
-.parks-page { max-width: 80rem; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
-.playground-post-page { margin: 0 auto; max-width: 80rem; padding: 2.5rem 1rem 4rem; }
+.parks-page { margin: 0 auto; }
+.playground-post-page { margin: 0 auto; max-width: 72rem; padding: 3rem 1rem 4rem; }
+@media (min-width: 640px) { .playground-post-page { padding-inline: 1.5rem; } }
+@media (min-width: 1024px) { .playground-post-page { padding-inline: 2rem; } }
 .playground-post-hero { margin-bottom: 2rem; max-width: 46rem; }
 .playground-post-kicker { color: var(--accent-dark); font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
 .playground-post-title { color: var(--primary); font-size: 2.25rem; font-weight: 700; letter-spacing: -.5px; line-height: 1.2; margin: .5rem 0 1rem; }
