@@ -5,88 +5,23 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import {
     EnvelopeIcon,
+    AcademicCapIcon,
     HeartIcon,
     MapPinIcon
 } from '@heroicons/react/24/outline';
+import { MapPinIcon as MapPinSolidIcon, EnvelopeIcon as EnvelopeSolidIcon } from '@heroicons/react/24/solid';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
-import { Pin } from 'lucide-react';
+import { Github, Linkedin, Pin } from 'lucide-react';
 import { SiteConfig } from '@/lib/config';
-
-const brandIconProps = {
-    fill: 'none',
-    stroke: 'currentColor',
-    strokeWidth: 1.45,
-    strokeLinecap: 'round' as const,
-    strokeLinejoin: 'round' as const,
-};
-
-// Monoline brand icons share a 24 × 24 optical frame so they align as a set.
-const EmailIcon = ({ className }: { className?: string }) => (
-    <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...brandIconProps}>
-        <rect x="2" y="4.5" width="20" height="15" rx="2.4" />
-        <path d="m3 6 7.6 5.65a2.35 2.35 0 0 0 2.8 0L21 6" />
-    </svg>
-);
-
-const LocationIcon = ({ className }: { className?: string }) => (
-    <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...brandIconProps}>
-        <path d="M20 10c0 5.2-5.7 10.5-7.45 11.98a.84.84 0 0 1-1.1 0C9.7 20.5 4 15.2 4 10a8 8 0 1 1 16 0Z" />
-        <circle cx="12" cy="10" r="2.7" />
-    </svg>
-);
-
-const ScholarIcon = ({ className }: { className?: string }) => (
-    <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...brandIconProps}>
-        <path d="m2 8.25 10-5.1 10 5.1-10 5.1-10-5.1Z" />
-        <path d="M5.2 10.05v5.2c2.1 1.7 4.35 2.55 6.8 2.55s4.7-.85 6.8-2.55v-5.2" />
-        <path d="M3.8 9.2v7.3" />
-        <circle cx="3.8" cy="17.7" r="0.8" />
-    </svg>
-);
 
 const OrcidIcon = ({ className }: { className?: string }) => (
     <svg
         viewBox="0 0 24 24"
+        fill="currentColor"
         className={className}
         xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-        {...brandIconProps}
     >
-        <circle cx="12" cy="12" r="9.6" />
-        <circle cx="7.7" cy="7.4" r="0.72" fill="currentColor" stroke="none" />
-        <path d="M7.7 10.1v6.65" />
-        <path d="M11.15 7.35v9.4h2.15c2.75 0 4.6-1.9 4.6-4.7s-1.85-4.7-4.6-4.7h-2.15Z" />
-    </svg>
-);
-
-const GithubIcon = ({ className }: { className?: string }) => (
-    <svg
-        viewBox="0 0 24 24"
-        className={className}
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-        {...brandIconProps}
-    >
-        <circle cx="12" cy="12" r="9.6" />
-        <path d="M7.25 9.35c0-1.05.35-2.05 1.02-2.82l-.34-1.85 2.06.78c.64-.2 1.31-.3 2.01-.3s1.37.1 2.01.3l2.06-.78-.34 1.85a4.33 4.33 0 0 1 1.02 2.82c0 2.8-1.78 4.55-4.75 4.55s-4.75-1.75-4.75-4.55Z" />
-        <path d="M9.45 13.45v1.15c0 .92-.32 1.7-.95 2.35" />
-        <path d="M14.55 13.45v3.5" />
-        <path d="M9.35 16.45c-1.15.28-2.05-.15-2.55-1.12-.4-.77-.9-1.05-1.42-1.05" />
-    </svg>
-);
-
-const LinkedinIcon = ({ className }: { className?: string }) => (
-    <svg
-        viewBox="0 0 24 24"
-        className={className}
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-        {...brandIconProps}
-    >
-        <rect x="2" y="2" width="20" height="20" rx="3.2" />
-        <circle cx="7.25" cy="7.15" r="0.85" />
-        <path d="M7.25 10v7" />
-        <path d="M11 17v-7m0 3.1c.75-1.9 2.15-3.1 3.9-3.1 2.15 0 3.35 1.45 3.35 4.05V17m-7.25 0v-3.9" />
+        <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z" />
     </svg>
 );
 
@@ -136,46 +71,34 @@ export default function Profile({ author, social, features, researchInterests }:
         ...(social.email ? [{
             name: 'Email',
             href: `mailto:${social.email}`,
-            icon: EmailIcon,
-            imageSrc: '/images/contact-email.png',
-            sizeClass: 'h-9 w-10',
+            icon: EnvelopeIcon,
             isEmail: true,
         }] : []),
         ...(social.location || social.location_details ? [{
             name: 'Location',
             href: social.location_url || '#',
-            icon: LocationIcon,
-            imageSrc: '/images/contact-location.png',
-            sizeClass: 'h-9 w-9',
+            icon: MapPinIcon,
             isLocation: true,
         }] : []),
         ...(social.google_scholar ? [{
             name: 'Google Scholar',
             href: social.google_scholar,
-            icon: ScholarIcon,
-            imageSrc: '/images/contact-scholar.png',
-            sizeClass: 'h-9 w-10',
+            icon: AcademicCapIcon,
         }] : []),
         ...(social.orcid ? [{
             name: 'ORCID',
             href: social.orcid,
             icon: OrcidIcon,
-            imageSrc: '/images/contact-orcid.png',
-            sizeClass: 'h-9 w-9',
         }] : []),
         ...(social.github ? [{
             name: 'GitHub',
             href: social.github,
-            icon: GithubIcon,
-            imageSrc: '/images/contact-github.png',
-            sizeClass: 'h-9 w-9',
+            icon: Github,
         }] : []),
         ...(social.linkedin ? [{
             name: 'LinkedIn',
             href: social.linkedin,
-            icon: LinkedinIcon,
-            imageSrc: '/images/contact-linkedin.png',
-            sizeClass: 'h-9 w-9',
+            icon: Linkedin,
         }] : []),
     ];
 
@@ -215,23 +138,7 @@ export default function Profile({ author, social, features, researchInterests }:
             </div>
 
             {/* Contact Links */}
-            <div className="relative mx-auto mb-6 h-[48px] w-[276px]">
-                <div className="pointer-events-none absolute inset-0 grid grid-cols-6" aria-hidden="true">
-                    {socialLinks.map((link) => (
-                        <div key={link.name} className="flex items-center justify-center">
-                            <div className="relative h-9 w-9">
-                                <Image
-                                    src={link.imageSrc}
-                                    alt=""
-                                    fill
-                                    sizes="36px"
-                                    className="object-contain"
-                                />
-                            </div>
-                        </div>
-                    ))}
-                </div>
-                <div className="absolute inset-0 flex items-center">
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-6 relative px-2">
                 {socialLinks.map((link, idx) => {
                     const IconComponent = link.icon;
                     if (link.isLocation) {
@@ -248,13 +155,17 @@ export default function Profile({ author, social, features, researchInterests }:
                                         setShowAddress(!isAddressPinned);
                                         setLastClickedTooltip('address');
                                     }}
-                                    className={`inline-flex h-[48px] w-[46px] items-center justify-center transition-colors duration-200 ${isAddressPinned
+                                    className={`inline-flex items-center justify-center p-2 sm:p-2 transition-colors duration-200 ${isAddressPinned
                                         ? 'text-accent'
                                         : 'text-neutral-600 dark:text-neutral-400 hover:text-accent'
                                         }`}
                                     aria-label={link.name}
                                 >
-                                    <LocationIcon className={`${link.sizeClass} opacity-0`} />
+                                    {isAddressPinned ? (
+                                        <MapPinSolidIcon className="h-5 w-5" />
+                                    ) : (
+                                        <MapPinIcon className="h-5 w-5" />
+                                    )}
                                 </button>
 
                                 {/* Address tooltip */}
@@ -321,13 +232,17 @@ export default function Profile({ author, social, features, researchInterests }:
                                         setShowEmail(!isEmailPinned);
                                         setLastClickedTooltip('email');
                                     }}
-                                    className={`inline-flex h-[48px] w-[46px] items-center justify-center transition-colors duration-200 ${isEmailPinned
+                                    className={`inline-flex items-center justify-center p-2 sm:p-2 transition-colors duration-200 ${isEmailPinned
                                         ? 'text-accent'
                                         : 'text-neutral-600 dark:text-neutral-400 hover:text-accent'
                                         }`}
                                     aria-label={link.name}
                                 >
-                                    <EmailIcon className={`${link.sizeClass} opacity-0`} />
+                                    {isEmailPinned ? (
+                                        <EnvelopeSolidIcon className="h-5 w-5" />
+                                    ) : (
+                                        <EnvelopeIcon className="h-5 w-5" />
+                                    )}
                                 </button>
 
                                 {/* Email tooltip */}
@@ -384,10 +299,10 @@ export default function Profile({ author, social, features, researchInterests }:
                                 onMouseLeave={() => setHoveredIndex(null)}
                                 onFocus={() => setHoveredIndex(idx)}
                                 onBlur={() => setHoveredIndex(null)}
-                                className="inline-flex h-[48px] w-[46px] items-center justify-center text-neutral-600 dark:text-neutral-400 hover:text-accent transition-colors duration-200"
+                                className="inline-flex items-center justify-center p-2 sm:p-2 text-neutral-600 dark:text-neutral-400 hover:text-accent transition-colors duration-200"
                                 aria-label={link.name}
                             >
-                                <IconComponent className={`${link.sizeClass} opacity-0`} />
+                                <IconComponent className="h-5 w-5" />
                             </a>
                             <AnimatePresence>
                                 {hoveredIndex === idx && (
@@ -404,7 +319,6 @@ export default function Profile({ author, social, features, researchInterests }:
                         </div>
                     );
                 })}
-                </div>
             </div>
 
             {/* Research Interests */}
