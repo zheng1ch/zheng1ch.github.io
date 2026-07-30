@@ -569,12 +569,11 @@ h1, h2, h3, h4, h5, h6 {
 .dark .rank-switch button.active { background:var(--neutral-800); }
 .fr24-rank-grid { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:1rem; }
 .fr24-rank-grid>article { grid-column:span 3; }
-.fr24-rank-grid>article:nth-child(5) { grid-column:span 6; }
-.fr24-rank-grid>article:nth-child(n+6) { grid-column:span 3; }
+.fr24-rank-grid>article:nth-child(n+5) { grid-column:span 4; }
 .rank-list { display:flex; flex-direction:column; gap:.65rem; }
 .ranking-panel { display:flex; height:26.125rem; flex-direction:column; }
-.rank-list>div { display:grid; grid-template-columns:6rem minmax(3rem,1fr) 4.7rem; align-items:center; gap:.65rem; font-size:.82rem; }
-.route-ranking .rank-list>div { grid-template-columns:9rem minmax(3rem,1fr) 4.7rem; }
+.rank-list>div { display:grid; grid-template-columns:minmax(4.25rem,1fr) minmax(1.75rem,.72fr) auto; align-items:center; gap:.5rem; font-size:.82rem; }
+.route-ranking .rank-list>div { grid-template-columns:minmax(7.5rem,1fr) minmax(3rem,1.25fr) auto; }
 .rank-list span { overflow:hidden; color:var(--neutral-600); text-overflow:ellipsis; white-space:nowrap; }
 .rank-list .airline-label { display:flex; align-items:center; gap:.4rem; }
 .airline-label img { width:1.05rem; height:1.05rem; flex-shrink:0; object-fit:contain; background:transparent; }
@@ -583,7 +582,7 @@ h1, h2, h3, h4, h5, h6 {
 .dark .rank-list i { background:var(--neutral-800); }
 .rank-list b { display:block; height:100%; border-radius:999px; background:var(--accent); }
 .rank-list b,.extreme-list b,.bar-track span { transition:width .42s cubic-bezier(.22,1,.36,1),height .42s cubic-bezier(.22,1,.36,1); }
-.rank-list strong { color:var(--primary); font-size:.76rem; text-align:right; }
+.rank-list strong { color:var(--primary); font-size:.76rem; min-width:1.5rem; text-align:right; white-space:nowrap; }
 .fr24-panel footer { display:flex; align-items:baseline; gap:.38rem; margin-top:auto; border-top:1px solid var(--neutral-100); padding-top:.9rem; color:var(--neutral-500); letter-spacing:.02em; }
 .ranking-panel footer { margin-top:auto; }
 .fr24-panel footer strong { color:var(--primary); font-size:1.5rem; line-height:1; }
@@ -591,12 +590,12 @@ h1, h2, h3, h4, h5, h6 {
 .dark .fr24-panel footer { border-color:var(--neutral-800); }
 .extreme-ranking>h3 { min-height:2.55rem; margin-bottom:1rem; }
 .extreme-list { display:flex; flex-direction:column; gap:.65rem; }
-.extreme-list>div { display:grid; min-height:1.05rem; grid-template-columns:minmax(7rem,1fr) minmax(2rem,.65fr) 4.7rem; align-items:center; gap:.6rem; font-size:.82rem; }
+.extreme-list>div { display:grid; min-height:1.05rem; grid-template-columns:minmax(6rem,1fr) minmax(1.5rem,.55fr) 4.65rem; align-items:center; gap:.5rem; font-size:.82rem; }
 .extreme-list span { overflow:hidden; color:var(--neutral-600); text-overflow:ellipsis; white-space:nowrap; }
 .extreme-list i { height:.32rem; overflow:hidden; border-radius:999px; background:var(--neutral-100); }
 .dark .extreme-list i { background:var(--neutral-800); }
 .extreme-list b { display:block; height:100%; border-radius:999px; background:var(--accent); }
-.extreme-list strong { flex-shrink:0; color:var(--primary); font-size:.76rem; font-weight:700; }
+.extreme-list strong { color:var(--primary); font-size:.76rem; font-weight:700; text-align:right; white-space:nowrap; }
 .fr24-chart-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
 .fr24-chart:first-child { grid-column:1/-1; }
 .fr24-chart { min-height:0; }
