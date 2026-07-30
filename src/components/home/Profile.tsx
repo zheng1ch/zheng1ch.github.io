@@ -11,18 +11,58 @@ import {
 } from '@heroicons/react/24/outline';
 import { MapPinIcon as MapPinSolidIcon, EnvelopeIcon as EnvelopeSolidIcon } from '@heroicons/react/24/solid';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
-import { Github, Linkedin, Pin } from 'lucide-react';
+import { Pin } from 'lucide-react';
 import { SiteConfig } from '@/lib/config';
 
-// Custom ORCID icon component
+const brandIconProps = {
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.7,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+};
+
+// Monoline brand icons share a 24 × 24 optical frame so they align as a set.
 const OrcidIcon = ({ className }: { className?: string }) => (
     <svg
         viewBox="0 0 24 24"
-        fill="currentColor"
         className={className}
         xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        {...brandIconProps}
     >
-        <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z" />
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="8" cy="7.25" r="0.8" />
+        <path d="M8 10v7" />
+        <path d="M11.25 7.25V17h2.25a4.88 4.88 0 0 0 0-9.75h-2.25Z" />
+    </svg>
+);
+
+const GithubIcon = ({ className }: { className?: string }) => (
+    <svg
+        viewBox="0 0 24 24"
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        {...brandIconProps}
+    >
+        <circle cx="12" cy="12" r="10" />
+        <path d="M8.35 17.65v-1.4c-2.8.55-3.4-1.2-3.4-1.2-.46-1.17-1.12-1.48-1.12-1.48-.92-.63.07-.62.07-.62 1.02.07 1.55 1.04 1.55 1.04.9 1.55 2.37 1.1 2.95.84.09-.65.35-1.1.64-1.36-2.24-.26-4.59-1.12-4.59-4.98 0-1.1.39-2 1.04-2.7-.1-.26-.45-1.28.1-2.66 0 0 .85-.27 2.78 1.03A9.65 9.65 0 0 1 12 3.8c.86 0 1.72.12 2.53.35 1.93-1.3 2.78-1.03 2.78-1.03.55 1.38.2 2.4.1 2.66.65.7 1.04 1.6 1.04 2.7 0 3.87-2.36 4.72-4.6 4.97.36.31.68.92.68 1.85v2.35" />
+    </svg>
+);
+
+const LinkedinIcon = ({ className }: { className?: string }) => (
+    <svg
+        viewBox="0 0 24 24"
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        {...brandIconProps}
+    >
+        <rect x="2" y="2" width="20" height="20" rx="3.2" />
+        <circle cx="7.25" cy="7.15" r="0.85" />
+        <path d="M7.25 10v7" />
+        <path d="M11 17v-7m0 3.1c.75-1.9 2.15-3.1 3.9-3.1 2.15 0 3.35 1.45 3.35 4.05V17m-7.25 0v-3.9" />
     </svg>
 );
 
@@ -94,12 +134,12 @@ export default function Profile({ author, social, features, researchInterests }:
         ...(social.github ? [{
             name: 'GitHub',
             href: social.github,
-            icon: Github,
+            icon: GithubIcon,
         }] : []),
         ...(social.linkedin ? [{
             name: 'LinkedIn',
             href: social.linkedin,
-            icon: Linkedin,
+            icon: LinkedinIcon,
         }] : []),
     ];
 
