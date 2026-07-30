@@ -83,7 +83,10 @@ function airportSearch(code:string){const a=AIRPORTS[code];return `${code} ${a?.
 function countryFlag(code:string){return code.length===2?String.fromCodePoint(...[...code.toUpperCase()].map(char=>127397+char.charCodeAt(0))):'🌐';}
 function estimatedDuration(flight:FlightRecord){return distanceKm(flight)/730+.68;}
 function formatDuration(hours:number){return hours<1?`${Math.round(hours*60)} min`:`${Math.floor(hours)} h ${Math.round((hours%1)*60)} min`;}
-function aircraftAbbreviation(name:string){return name.replace(/^Airbus\s+/,'').replace(/^Boeing\s+/,'B').replace(/^Embraer RJ\s*/,'ERJ-').replace(/^Embraer\s+/,'E').replace(/^Bombardier CRJ\s*/,'CRJ-').replace(/^Bombardier Dash 8\s*/,'DHC-8-').replace(/^McDonnell Douglas\s+/,'MD-').replace(' ER','ER').replace(/\s+/g,'');}
+const AIRCRAFT_CODES:Record<string,string>={
+  'ATR 42 / ATR 72':'AT72','ATR 72':'AT72','Airbus A319':'A319','Airbus A320':'A320','Airbus A320neo':'A20N','Airbus A321':'A321','Airbus A321neo':'A21N','Airbus A330-200':'A332','Airbus A330-300':'A333','Airbus A350-1000':'A35K','Airbus A350-900':'A359','Boeing 717-200':'B712','Boeing 737':'B737','Boeing 737 MAX 8':'B38M','Boeing 737-400':'B734','Boeing 737-700':'B737','Boeing 737-800':'B738','Boeing 737-900ER':'B739','Boeing 747-8':'B748','Boeing 757-300':'B753','Boeing 767':'B767','Boeing 777-300 ER':'B77W','Boeing 787-8':'B788','Boeing 787-9':'B789','Bombardier CRJ700':'CRJ7','Bombardier CRJ900':'CRJ9','Embraer 170':'E170','Embraer 175':'E175','Embraer RJ145':'E145','Hawker Beechcraft 1900D':'BE19',
+};
+function aircraftAbbreviation(name:string){const cleaned=name.replace(/^"|"$/g,'').trim();return AIRCRAFT_CODES[cleaned]??cleaned.replace(/^Airbus\s+/,'').replace(/^Boeing\s+/,'B').replace(/^Embraer RJ\s*/,'E').replace(/^Embraer\s+/,'E').replace(/^Bombardier CRJ\s*/,'CRJ').replace(/\s+/g,'');}
 
 export default function FlightMap({ flights }: Props) {
   const mapNode=useRef<HTMLDivElement>(null), mapRef=useRef<GoogleMapInstance|null>(null);
