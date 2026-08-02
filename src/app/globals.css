@@ -577,9 +577,9 @@ h1, h2, h3, h4, h5, h6 {
 .rank-list .airline-label { display:flex; align-items:center; gap:.4rem; }
 .airline-label img { width:1.05rem; height:1.05rem; flex-shrink:0; object-fit:contain; background:transparent; }
 .country-flag { display:inline-block; width:1.05rem; height:1.05rem; object-fit:contain; vertical-align:-.18rem; }
-.route-label { display:flex; min-width:0; align-items:center; gap:.28rem; line-height:1.05rem; }
+.route-label { display:grid; width:max-content; max-width:100%; min-width:0; grid-template-columns:1.05rem 4.6rem 1.05rem; align-items:center; gap:.28rem; line-height:1.05rem; }
 .route-label .country-flag { flex:0 0 1.05rem; vertical-align:middle; }
-.route-label>span { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.route-label>span { min-width:0; overflow:hidden; text-align:center; text-overflow:ellipsis; white-space:nowrap; }
 .airline-label>span { color:inherit; font-weight:400; overflow:visible; }
 .rank-list i { height:.32rem; overflow:hidden; border-radius:999px; background:var(--neutral-100); }
 .dark .rank-list i { background:var(--neutral-800); }
