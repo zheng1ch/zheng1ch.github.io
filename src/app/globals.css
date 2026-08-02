@@ -346,8 +346,7 @@ body {
 .park-library-viewport { height: 34.85rem; overflow: hidden; -webkit-mask-image: linear-gradient(to right,transparent 0,#000 2.75rem,#000 calc(100% - 2.75rem),transparent 100%),linear-gradient(to bottom,transparent 0,#000 2.75rem,#000 calc(100% - 2.75rem),transparent 100%); -webkit-mask-composite: source-in; mask-composite: intersect; mask-image: linear-gradient(to right,transparent 0,#000 2.75rem,#000 calc(100% - 2.75rem),transparent 100%),linear-gradient(to bottom,transparent 0,#000 2.75rem,#000 calc(100% - 2.75rem),transparent 100%); }
 .park-library-viewport.is-hidden { opacity: 0; pointer-events: none; visibility: hidden; }
 .park-focused-content { animation: park-content-in .16s ease-out; overflow: hidden; }
-.park-library-track { display: flex; height: 100%; width: max-content; animation: park-library-drift 340s linear infinite; }
-.park-library-viewport:hover .park-library-track,.park-library-viewport:focus-within .park-library-track { animation-play-state: paused; }
+.park-library-track { animation: park-library-drift 340s linear infinite; display: flex; height: 100%; transform: translate3d(0,0,0); will-change: transform; width: max-content; }
 .park-library-shelf { display: grid; gap: .55rem; grid-auto-columns: clamp(7.25rem,9.5vw,9rem); grid-auto-flow: column dense; grid-template-rows: repeat(3,minmax(0,1fr)); height: 100%; padding-right: .55rem; }
 .park-library-card { background: #202724; border-radius: .4rem; box-shadow: 0 8px 18px rgba(0,0,0,.32); height: 100%; overflow: hidden; position: relative; transform-origin: center; width: 100%; }
 .park-library-card.is-feature { grid-row: span 2; height: 100%; }
@@ -356,7 +355,7 @@ body {
 .park-memory-art svg { height: 2.2rem; width: 2.2rem; }.park-memory-art em { font-size: .64rem; font-style: normal; letter-spacing: .04em; line-height: 1.35; text-transform: uppercase; }
 .park-empty-gallery { align-items: center; background: var(--neutral-50); border: 1px solid var(--neutral-200); border-radius: 1.25rem; display: grid; gap: 1.25rem; grid-template-columns: 9rem 1fr; overflow: hidden; padding: 1rem; }
 .park-empty-gallery .park-memory-art { border-radius: .8rem; height: 11rem; }.park-empty-gallery span { color: var(--accent-dark); font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }.park-empty-gallery h2 { color: var(--primary); font-family: var(--font-heading); font-size: 1.55rem; }.park-empty-gallery p { color: var(--neutral-500); font-size: .75rem; }
-@keyframes park-library-drift { to { transform: translateX(-50%); } }
+@keyframes park-library-drift { to { transform: translate3d(-50%,0,0); } }
 @keyframes park-content-in { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .park-library-track { animation: none; } }
 .parks-directory { margin-top: 1.25rem; }
@@ -577,6 +576,10 @@ h1, h2, h3, h4, h5, h6 {
 .rank-list span { overflow:hidden; color:var(--neutral-600); text-overflow:ellipsis; white-space:nowrap; }
 .rank-list .airline-label { display:flex; align-items:center; gap:.4rem; }
 .airline-label img { width:1.05rem; height:1.05rem; flex-shrink:0; object-fit:contain; background:transparent; }
+.country-flag { display:inline-block; width:1.05rem; height:1.05rem; object-fit:contain; vertical-align:-.18rem; }
+.route-label { display:flex; min-width:0; align-items:center; gap:.28rem; line-height:1.05rem; }
+.route-label .country-flag { flex:0 0 1.05rem; vertical-align:middle; }
+.route-label>span { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .airline-label>span { color:inherit; font-weight:400; overflow:visible; }
 .rank-list i { height:.32rem; overflow:hidden; border-radius:999px; background:var(--neutral-100); }
 .dark .rank-list i { background:var(--neutral-800); }

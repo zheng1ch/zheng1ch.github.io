@@ -3,15 +3,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import {
-    EnvelopeIcon,
-    AcademicCapIcon,
-    HeartIcon,
-    MapPinIcon
-} from '@heroicons/react/24/outline';
-import { MapPinIcon as MapPinSolidIcon, EnvelopeIcon as EnvelopeSolidIcon } from '@heroicons/react/24/solid';
+import { HeartIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
-import { Github, Linkedin, Pin } from 'lucide-react';
+import { Github, Pin } from 'lucide-react';
+import { IconBrandLinkedin, IconMail, IconMap, IconSchool } from '@tabler/icons-react';
 import { SiteConfig } from '@/lib/config';
 
 const OrcidIcon = ({ className }: { className?: string }) => (
@@ -71,19 +66,19 @@ export default function Profile({ author, social, features, researchInterests }:
         ...(social.email ? [{
             name: 'Email',
             href: `mailto:${social.email}`,
-            icon: EnvelopeIcon,
+            icon: IconMail,
             isEmail: true,
         }] : []),
         ...(social.location || social.location_details ? [{
             name: 'Location',
             href: social.location_url || '#',
-            icon: MapPinIcon,
+            icon: IconMap,
             isLocation: true,
         }] : []),
         ...(social.google_scholar ? [{
             name: 'Google Scholar',
             href: social.google_scholar,
-            icon: AcademicCapIcon,
+            icon: IconSchool,
         }] : []),
         ...(social.orcid ? [{
             name: 'ORCID',
@@ -98,7 +93,7 @@ export default function Profile({ author, social, features, researchInterests }:
         ...(social.linkedin ? [{
             name: 'LinkedIn',
             href: social.linkedin,
-            icon: Linkedin,
+            icon: IconBrandLinkedin,
         }] : []),
     ];
 
@@ -161,11 +156,7 @@ export default function Profile({ author, social, features, researchInterests }:
                                         }`}
                                     aria-label={link.name}
                                 >
-                                    {isAddressPinned ? (
-                                        <MapPinSolidIcon className="h-5 w-5" />
-                                    ) : (
-                                        <MapPinIcon className="h-5 w-5" />
-                                    )}
+                                    <IconMap className="h-5 w-5" />
                                 </button>
 
                                 {/* Address tooltip */}
@@ -204,7 +195,7 @@ export default function Profile({ author, social, features, researchInterests }:
                                                             rel="noopener noreferrer"
                                                             className="inline-flex items-center justify-center space-x-2 bg-accent hover:bg-accent-dark text-white px-3 py-1 rounded-md text-xs font-medium transition-colors duration-200 w-full sm:w-auto"
                                                         >
-                                                            <MapPinIcon className="h-4 w-4" />
+                                                            <IconMap className="h-4 w-4" />
                                                             <span>Google Map</span>
                                                         </a>
                                                     )}
@@ -238,11 +229,7 @@ export default function Profile({ author, social, features, researchInterests }:
                                         }`}
                                     aria-label={link.name}
                                 >
-                                    {isEmailPinned ? (
-                                        <EnvelopeSolidIcon className="h-5 w-5" />
-                                    ) : (
-                                        <EnvelopeIcon className="h-5 w-5" />
-                                    )}
+                                    <IconMail className="h-5 w-5" />
                                 </button>
 
                                 {/* Email tooltip */}
@@ -276,7 +263,7 @@ export default function Profile({ author, social, features, researchInterests }:
                                                         href={link.href}
                                                         className="inline-flex items-center justify-center space-x-2 bg-accent hover:bg-accent-dark text-white px-3 py-1 rounded-md text-xs font-medium transition-colors duration-200 w-full sm:w-auto"
                                                     >
-                                                        <EnvelopeIcon className="h-4 w-4" />
+                                                        <IconMail className="h-4 w-4" />
                                                         <span className="sm:hidden">Send</span>
                                                         <span className="hidden sm:inline">Send Email</span>
                                                     </a>
