@@ -572,7 +572,7 @@ h1, h2, h3, h4, h5, h6 {
 .rank-list { display:flex; flex-direction:column; gap:.65rem; }
 .ranking-panel { display:flex; height:26.125rem; flex-direction:column; }
 .rank-list>div { display:grid; grid-template-columns:minmax(4.25rem,1fr) minmax(1.75rem,.72fr) 5.75rem; align-items:center; gap:.5rem; font-size:.82rem; }
-.route-ranking .rank-list>div { grid-template-columns:minmax(7.5rem,1fr) minmax(3rem,1.25fr) 5.75rem; }
+.route-ranking .rank-list>div,.extreme-list>div { grid-template-columns:minmax(6rem,1fr) minmax(1.5rem,.55fr) 4.65rem; }
 .rank-list span { overflow:hidden; color:var(--neutral-600); text-overflow:ellipsis; white-space:nowrap; }
 .rank-list .airline-label { display:flex; align-items:center; gap:.4rem; }
 .airline-label img { width:1.05rem; height:1.05rem; flex-shrink:0; object-fit:contain; background:transparent; }
@@ -593,7 +593,7 @@ h1, h2, h3, h4, h5, h6 {
 .dark .fr24-panel footer { border-color:var(--neutral-800); }
 .extreme-ranking>h3 { min-height:2.55rem; margin-bottom:1rem; }
 .extreme-list { display:flex; flex-direction:column; gap:.65rem; }
-.extreme-list>div { display:grid; min-height:1.05rem; grid-template-columns:minmax(6rem,1fr) minmax(1.5rem,.55fr) 4.65rem; align-items:center; gap:.5rem; font-size:.82rem; }
+.extreme-list>div { display:grid; min-height:1.05rem; align-items:center; gap:.5rem; font-size:.82rem; }
 .extreme-list span { overflow:hidden; color:var(--neutral-600); text-overflow:ellipsis; white-space:nowrap; }
 .extreme-list i { height:.32rem; overflow:hidden; border-radius:999px; background:var(--neutral-100); }
 .dark .extreme-list i { background:var(--neutral-800); }
