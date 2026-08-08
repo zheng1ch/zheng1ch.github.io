@@ -8,6 +8,7 @@ import { getConfig } from "@/lib/config";
 export async function generateMetadata(): Promise<Metadata> {
   const config = getConfig();
   return {
+    metadataBase: new URL("https://yichengzheng.com"),
     title: {
       default: config.site.title,
       template: `%s | ${config.site.title}`,
@@ -17,6 +18,9 @@ export async function generateMetadata(): Promise<Metadata> {
     authors: [{ name: config.author.name }],
     creator: config.author.name,
     publisher: config.author.name,
+    alternates: {
+      canonical: "/",
+    },
     icons: {
       icon: config.site.favicon,
     },

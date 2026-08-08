@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zheng1ch.github.io/site_map.xml
+Sitemap: https://yichengzheng.com/site_map.xml

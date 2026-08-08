@@ -7,6 +7,7 @@ import { parseFlightyCsv } from '@/lib/flightMap';
 export const metadata: Metadata = {
   title: 'My flights record',
   description: 'An interactive map and statistical record of my flight history.',
+  alternates: { canonical: '/flights/' },
 };
 
 export default function FlightsPage() {

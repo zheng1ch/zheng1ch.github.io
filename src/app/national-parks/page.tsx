@@ -4,6 +4,7 @@ import NationalParksMap from '@/components/parks/NationalParksMap';
 export const metadata: Metadata = {
   title: 'My National Parks',
   description: 'An interactive map of the U.S. national parks I have visited—and the adventures still ahead.',
+  alternates: { canonical: '/national-parks/' },
 };
 
 export default function NationalParksPage() {

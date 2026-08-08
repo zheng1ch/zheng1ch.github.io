@@ -1,8 +1,38 @@
 # Project Summary
 
-> This is the living product and architecture summary for Yicheng Zheng's personal academic website. Update it in the same change whenever a feature, dependency, product direction, or deliberate exclusion changes. Before editing it, check the current implementation, `content/config.toml`, and recent Git history rather than treating this file as the sole source of truth.
+> This is the authoritative project-level source of truth for Yicheng Zheng's personal academic website. It captures the product direction, architecture, design philosophy, current capabilities, roadmap, and deliberate exclusions. Update it in the same change whenever any of those areas change.
 
 Last reviewed: August 1, 2026
+
+## Recent Changes
+
+Newest first. This is a short handoff log, not a replacement for Git history.
+
+### 2026-08-08
+
+- Aligned canonical URLs, robots guidance, and the public sitemap with the `yichengzheng.com` production domain.
+
+### 2026-08-01
+
+- Updated profile and travel visuals, then aligned route flags and labels.
+- Added this project summary and refreshed the sitemap with the National Park Checklist.
+
+### 2026-07-30
+
+- Restored theme-aware profile icons.
+
+### 2026-07-29
+
+- Added the National Park Checklist, interactive park map, visit tracking, and personal photo galleries.
+- Refined map interactions and aligned the Playground and flight-statistics layouts.
+- Updated the profile assets, social icons, favicon, and site layout.
+- Improved flight rankings and shortened aircraft labels.
+
+### 2026-07-27
+
+- Replaced the legacy flights content page with a dedicated Google Maps flight-history experience.
+- Added theme-aware flight maps, route flags, production configuration, and ranking refinements.
+- Kept the flights experience under Playground instead of exposing Travel in primary navigation.
 
 ## What This Project Is
 
@@ -102,10 +132,13 @@ These are current decisions, not permanent prohibitions. Revisit them only with 
 
 For every meaningful project change:
 
-1. Update **Current Features** when visitor-visible behavior ships or is removed.
-2. Update **Tech Stack** when a dependency, data source, hosting assumption, or architectural boundary changes.
-3. Move roadmap items as work progresses; do not leave completed work described as future work.
-4. Record important product or architecture decisions in **Things Intentionally Rejected or Deferred**, including what replaced the rejected approach.
-5. Refresh the review date and make statements match the repository at that commit.
+1. Add a brief entry to **Recent Changes**; keep only the recent history useful for handoffs and rely on Git for the full record.
+2. Update **Current Features** when visitor-visible behavior ships or is removed.
+3. Update **Tech Stack** when a dependency, data source, hosting assumption, or architectural boundary changes.
+4. Move roadmap items as work progresses; do not leave completed work described as future work.
+5. Record important product or architecture decisions in **Things Intentionally Rejected or Deferred**, including what replaced the rejected approach.
+6. Refresh the review date and make statements match the repository at that commit.
+
+When this summary and the implementation disagree, inspect the current code, `content/config.toml`, and recent Git history, then correct this file as part of the same change.
 
 Small copy edits and data refreshes do not require a summary change unless they alter the product direction or invalidate a statement above.
